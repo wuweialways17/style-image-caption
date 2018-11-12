@@ -12,16 +12,16 @@ import random
 import json
 
 while True:
-    fin = open('E:/funny_train.txt', 'r')               #以读的方式打开输入文件  
-    fout = open('E:/funny_train_ch.txt', 'w')             #以写的方式打开输出文件
+    fin = open('E:/caption_train.txt', 'r')               
+    fout = open('E:/caption_train_ch.txt', 'w')             
     for eachLine in fin:
-        appid = '20181019000221851'    #百度翻译api申请后得到的appid和secretKey
+        appid = '20181019000221851'    # your appid and secretKey after applying for Baidu translater API
         secretKey = 'vFw2ppVyaVlof2DcaIl1 '
         httpClient = None
         myurl = '/api/trans/vip/translate'
-        q = eachLine.strip()                   #文本文件中每一行作为一个翻译源
-        fromLang = 'en'                         #中文
-        toLang = 'zh'                             #英文
+        q = eachLine.strip()                   #interlinear translation
+        fromLang = 'en'                         #Chinese
+        toLang = 'zh'                             #English
         salt = random.randint(32768, 65536)
         sign = appid+q+str(salt)+secretKey
         sign = sign.encode('UTF-8')
@@ -31,7 +31,6 @@ while True:
         myurl = myurl+'?appid='+appid+'&q='+urllib.parse.quote(q)+'&from='+fromLang+'&to='+toLang+'&salt='+str(salt)+'&sign='+sign
         httpClient = http.client.HTTPConnection('api.fanyi.baidu.com')
         httpClient.request('GET', myurl)
-        #response是HTTPResponse对象
         response = httpClient.getresponse()
         html= response.read().decode('UTF-8')
         target2 = json.loads(html)
@@ -40,5 +39,5 @@ while True:
         fout.write(outStr.strip() + '\n')  
     fin.close()  
     fout.close()
-    print('翻译成功，请查看文件')
+    print('Translation is successful,please view the file.')
     break
