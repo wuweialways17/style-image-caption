@@ -1,6 +1,6 @@
 Our project has been published in the form of a web page. You are welcome to try and thank you for your suggestions.
-url：https://wuweialways17.github.io/styleCaption/
 
+The implementation method of this work will be updated with the progress in my "zhihu" personal homepage in the future. Welcome to exchange and discuss!
 
 Here are some running screenshots:
 
